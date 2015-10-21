@@ -11,7 +11,11 @@
             <CheckBox Name="chk_Complete" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"></CheckBox>
             <Label Name="lbl_taskName" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="250" Content="{Binding Path=name}"></Label>
             <Label Name="lbl_Date" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-            <Label Name="lbl_Imp" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <Label Name="lbl_Imp" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="Auto" Margin="25 0 0 0">
+                <Label.Background>
+                    <ImageBrush ImageSource="/WunderListDemo;component/Images/ColourStar.png" ></ImageBrush>
+                </Label.Background>
+            </Label>
         </WrapPanel>
     </Border>
 </UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using System.Reflection;
 
 namespace WunderListDemo
 {
@@ -67,6 +68,10 @@ namespace WunderListDemo
             };
             dtp_Date.KeyUp += dtp_Date_KeyUp;
 
+
+            dtp_Date.DisplayDateStart = DateTime.Today;
+            //CalendarDateRange calendarDateRange = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
+            //dtp_Date.BlackoutDates.Add(calendarDateRange);
             #endregion
 
             #region stackpanel
@@ -97,6 +102,7 @@ namespace WunderListDemo
             dtp_Date.SelectedDate = null;
             dtp_Date.DisplayDate = DateTime.Today;
             dtp_Date.Text = string.Empty;
+            tglBtn.IsChecked = false;
         }
 
         /// <summary>
@@ -112,7 +118,13 @@ namespace WunderListDemo
                 tsk.chk_Complete.IsChecked = false;
 
                 tsk.lbl_Date.Content = dtp_Date.SelectedDate != null ? dtp_Date.SelectedDate.Value.ToString("G") : DateTime.Now.ToString("G");
-                tsk.lbl_Imp.Background = (bool)tglBtn.IsChecked ? Brushes.Red : null;
+                ImageBrush myBrush = new ImageBrush();
+                myBrush.ImageSource = this.Icon = new BitmapImage(new Uri(@"pack://application:,,,/"
+             + Assembly.GetExecutingAssembly().GetName().Name
+             + ";component/"
+             + "Images/ColourStar.png", UriKind.RelativeOrAbsolute));
+                myBrush.Stretch = Stretch.UniformToFill;
+                tsk.lbl_Imp.Background = (bool)tglBtn.IsChecked ? myBrush : null;
 
                 Thickness margin = tsk.Margin;
                 margin.Top = 2;
@@ -406,7 +418,7 @@ namespace WunderListDemo
         /// </summary>
         private void sortImportantwise()
         {
-            List<TaskControl> sortedList = taskList.OrderByDescending(task => task.lbl_Date.Content).ToList().OrderByDescending(task => task.lbl_Imp.Background).ToList();
+            List<TaskControl> sortedList = taskList.OrderByDescending(task => task.lbl_Date.Content).ToList().OrderByDescending(task => task.lbl_Imp.Background != null).ToList();
             stck_task.Children.Clear();
             this.taskList.Clear();
             this.taskList = sortedList;

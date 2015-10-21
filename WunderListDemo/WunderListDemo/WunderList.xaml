@@ -83,21 +83,10 @@
 
 
                     <DatePicker  Name="dtp_Date" Background="Green" ></DatePicker>
-                    <!--<ToggleButton Name="chk_Star" Width="20" Height="Auto" HorizontalAlignment="Stretch">
-                        <ToggleButton.Background>
-                            <ImageBrush ImageSource="Images/WhiteStar.png" Opacity="1.5" />
-                        </ToggleButton.Background>
-                    </ToggleButton>-->
                     <ToggleButton Name="tglBtn" IsChecked="{Binding Status}" Width="Auto" Height="Auto" Style="{StaticResource OnOffToggleImageStyle}" Focusable="False" Background="Green"/>
                 </WrapPanel>
 
-                <!--<ListBox x:Name="lstBox">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Width="Auto" Name="stck_task" Orientation="Vertical" />
-                        </DataTemplate>
-                </ListBox>-->
-                <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Width="Auto" Name="stck_task" Orientation="Vertical" />
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Width="Auto" Height="Auto" Name="stck_task" Orientation="Vertical" />
                 <WrapPanel Grid.Row="3" Grid.Column="0" Width="Auto" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Button Name="btn_completed"  Content="Show Completed To-Dos" HorizontalAlignment="Left" />
                 </WrapPanel>
