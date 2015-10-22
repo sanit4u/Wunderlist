@@ -39,6 +39,92 @@
 
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="GreenFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="3 2">
+                            <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                            <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="GreenShadowStyle">
+            <Setter Property="Control.Foreground" Value="LightGreen" />
+        </Style>
+
+        <Style x:Key="Green" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!--<Setter Property="FocusVisualStyle" Value="{StaticResource GreenFocusVisual}" />-->
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFADD186" Offset="0" />
+                        <GradientStop Color="#FF5ED83A" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+				BorderThickness="1"
+				Padding="4,2" 
+				BorderBrush="DarkGreen" 
+				CornerRadius="3" 
+				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+	                           VerticalAlignment="Center" Name="contentShadow" 
+					Style="{StaticResource GreenShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="1.0" Y="1.0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                                <Setter Property="Foreground" Value="#FF3665B1" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFADD186" Offset="0" />
+                                            <GradientStop Color="#895ED83A" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="LightGreen" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="DarkGreen" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    
+
         <Thickness x:Key="tbMargin">0,10,0,0</Thickness>
     </Window.Resources>
 
@@ -65,7 +151,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Wunder List" Name="lbl_Head1" HorizontalAlignment="Stretch" FontWeight="ExtraBold" ></Label>
-                <Button Grid.Column="3"  Name="btn_Sort" Content="Sort" Background="Transparent" Focusable="False" >
+                <Button Grid.Column="3"  Name="btn_Sort" Content="Sort" Background="Transparent" Focusable="False" Style="{StaticResource Green}">
                     <Button.ContextMenu>
                         <ContextMenu >
                             <MenuItem Header="Sort Datewise"/>
@@ -88,7 +174,7 @@
 
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Width="Auto" Height="Auto" Name="stck_task" Orientation="Vertical" />
                 <WrapPanel Grid.Row="3" Grid.Column="0" Width="Auto" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                    <Button Name="btn_completed"  Content="Show Completed To-Dos" HorizontalAlignment="Left" />
+                    <Button Name="btn_completed"  Content="Show Completed To-Dos" HorizontalAlignment="Left" Focusable="False" Style="{StaticResource Green}" />
                 </WrapPanel>
                 <StackPanel Grid.Row="4" Grid.ColumnSpan="4" Width="Auto" Name="stck_completedTask" Orientation="Vertical"  />
             </Grid>

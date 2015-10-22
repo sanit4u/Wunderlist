@@ -80,6 +80,7 @@ namespace WunderListDemo
 
             #region button_sort
             btn_Sort.Click += btn_Sort_Click;
+            //btn_Sort.MouseMove += btn_Sort_MouseMove;
             #endregion
 
             #region showComplete button
@@ -89,6 +90,16 @@ namespace WunderListDemo
             isShown = false;
 
             #endregion
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Sort_MouseMove(object sender, MouseEventArgs e)
+        {
+            ((Button)sender).Background = Brushes.Transparent;
         }
 
 
@@ -402,7 +413,7 @@ namespace WunderListDemo
         /// </summary>
         private void sortDatewise()
         {
-            List<TaskControl> sortedList = taskList.OrderByDescending(task => task.lbl_Date.Content).ToList();
+            List<TaskControl> sortedList = taskList.OrderByDescending(task => DateTime.Parse(Convert.ToString(task.lbl_Date.Content))).ToList();
             stck_task.Children.Clear();
             this.taskList.Clear();
             this.taskList = sortedList;
@@ -418,7 +429,7 @@ namespace WunderListDemo
         /// </summary>
         private void sortImportantwise()
         {
-            List<TaskControl> sortedList = taskList.OrderByDescending(task => task.lbl_Date.Content).ToList().OrderByDescending(task => task.lbl_Imp.Background != null).ToList();
+            List<TaskControl> sortedList = taskList.OrderByDescending(task => DateTime.Parse(Convert.ToString(task.lbl_Date.Content))).ToList().OrderByDescending(task => task.lbl_Imp.Background != null).ToList();
             stck_task.Children.Clear();
             this.taskList.Clear();
             this.taskList = sortedList;

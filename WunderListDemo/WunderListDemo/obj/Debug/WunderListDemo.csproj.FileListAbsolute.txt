@@ -1,5 +1,4 @@
 C:\Users\rsa\documents\visual studio 2012\Projects\WunderListDemo\WunderListDemo\obj\Debug\TaskControl.baml
-C:\Users\rsa\documents\visual studio 2012\Projects\WunderListDemo\WunderListDemo\obj\Debug\WunderStyles.baml
 C:\Users\rsa\documents\visual studio 2012\Projects\WunderListDemo\WunderListDemo\obj\Debug\TaskControl.g.cs
 C:\Users\rsa\documents\visual studio 2012\Projects\WunderListDemo\WunderListDemo\obj\Debug\App.g.cs
 C:\Users\rsa\documents\visual studio 2012\Projects\WunderListDemo\WunderListDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
